@@ -17,9 +17,6 @@
     <string name="overlay_adb">This TV has no settings screen for “Display over other apps”. Grant it from a computer:\nadb shell appops set %1$s SYSTEM_ALERT_WINDOW allow</string>
     <string name="about_button">About</string>
     <string name="about_title">About Mirrora</string>
-    <string name="about_body">Mirrora %1$s by Ranova Labs
-ranovalabs.github.io/mirrora · ranovalabs@icloud.com
-
-</string>
+    <string name="about_body">Mirrora %1$s by Ranova Labs\nranovalabs.github.io/mirrora · ranovalabs@icloud.com\nPrivacy policy: ranovalabs.github.io/mirrora/privacy.html\n\n</string>
     <string name="about_close">Close</string>
 </resources>
