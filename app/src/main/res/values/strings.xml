@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AirPlay TV</string>
+    <string name="app_name">Mirrora</string>
     <string name="status_starting">Starting receiver…</string>
     <string name="status_ready">Ready · %1$s</string>
     <string name="instructions">On your iPhone, iPad or Mac, open Control Center → Screen Mirroring and pick this TV.</string>
@@ -7,12 +7,19 @@
     <string name="status_announcing_wait">waiting for Android\'s discovery service</string>
     <string name="status_failed">Couldn\'t start the receiver: %1$s</string>
     <string name="no_network">no network</string>
-    <string name="audio_playing">Playing audio via AirPlay</string>
-    <string name="channel_name">AirPlay receiver</string>
+    <string name="audio_playing">Playing audio from your Apple device</string>
+    <string name="channel_name">Mirroring receiver</string>
     <string name="notification_idle">Discoverable as %1$s</string>
     <string name="notification_mirroring">Screen mirroring</string>
-    <string name="notification_video">Playing video via AirPlay</string>
+    <string name="notification_video">Playing video from your Apple device</string>
     <string name="overlay_hint">To open automatically when you start mirroring, allow “Display over other apps”.</string>
     <string name="overlay_button">Allow</string>
     <string name="overlay_adb">This TV has no settings screen for “Display over other apps”. Grant it from a computer:\nadb shell appops set %1$s SYSTEM_ALERT_WINDOW allow</string>
+    <string name="about_button">About</string>
+    <string name="about_title">About Mirrora</string>
+    <string name="about_body">Mirrora %1$s by Ranova Labs
+ranovalabs.github.io/mirrora · ranovalabs@icloud.com
+
+</string>
+    <string name="about_close">Close</string>
 </resources>

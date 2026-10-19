@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "AirPlayTV"
+rootProject.name = "Mirrora"
 include(":app")

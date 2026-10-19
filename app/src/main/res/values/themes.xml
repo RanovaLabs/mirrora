@@ -1,5 +1,5 @@
 <resources>
-    <style name="Theme.AirPlayTV" parent="@android:style/Theme.Material.NoActionBar.Fullscreen">
+    <style name="Theme.Mirrora" parent="@android:style/Theme.Material.NoActionBar.Fullscreen">
         <item name="android:windowBackground">@android:color/black</item>
         <item name="android:colorAccent">#FF4A9EFF</item>
     </style>

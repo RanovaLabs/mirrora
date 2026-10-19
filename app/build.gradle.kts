@@ -1,24 +1,42 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
 }
 
 android {
-    namespace = "dev.airplaytv"
-    compileSdk = 34
+    namespace = "com.ranovalabs.mirror"
+    compileSdk = 36
 
     defaultConfig {
-        applicationId = "dev.airplaytv"
+        applicationId = "com.ranovalabs.mirror"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
     }
 
+    // Upload key lives outside the repo (~/.mirrora-signing/keystore.properties, or the path in
+    // the mirroraSigningProperties Gradle property). Without it, release builds are unsigned.
+    val signingProps = file(project.findProperty("mirroraSigningProperties") as String?
+        ?: "${System.getProperty("user.home")}/.mirrora-signing/keystore.properties")
+    signingConfigs {
+        if (signingProps.exists()) {
+            val props = Properties().apply { signingProps.inputStream().use(::load) }
+            create("upload") {
+                storeFile = file(props.getProperty("storeFile"))
+                storePassword = props.getProperty("storePassword")
+                keyAlias = props.getProperty("keyAlias")
+                keyPassword = props.getProperty("keyPassword")
+            }
+        }
+    }
+
     buildTypes {
         release {
+            // No R8: Netty and the plist/crypto libraries rely on reflection.
             isMinifyEnabled = false
-            // Signed with the debug key so the release APK installs straight onto a TV.
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.findByName("upload")
         }
     }
 

@@ -1,0 +1,54 @@
+<!doctype html><html><head><style>html,body{margin:0;width:100vw;height:100vh;overflow:hidden}svg{display:block;width:100vw;height:100vh}</style></head><body>
+<script>
+const k = new URLSearchParams(location.search).get('k');
+const W = innerWidth, H = innerHeight;
+let svg;
+if (k === 'lake') {
+  // Mountain lake at golden hour, with its reflection.
+  svg = `<svg viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+   <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A3F7A"/><stop offset=".45" stop-color="#C46B6B"/><stop offset=".62" stop-color="#F2B66B"/></linearGradient>
+   <linearGradient id="water" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E8A866"/><stop offset=".35" stop-color="#7A5E86"/><stop offset="1" stop-color="#1E2A52"/></linearGradient>
+   <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#FFF4D6"/><stop offset=".5" stop-color="#FFD58A" stop-opacity=".9"/><stop offset="1" stop-color="#FFB45E" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1920" height="640" fill="url(#sky)"/>
+  <circle cx="1240" cy="420" r="230" fill="url(#sun)"/>
+  <circle cx="1240" cy="420" r="62" fill="#FFF1CF"/>
+  <path d="M0 560 L180 400 L330 470 L520 300 L700 450 L860 360 L1010 470 L1180 380 L1350 480 L1530 330 L1720 450 L1920 380 V640 H0Z" fill="#6E4F78" opacity=".85"/>
+  <path d="M0 640 L140 520 L300 580 L470 470 L640 590 L820 500 L1000 600 L1200 520 L1420 610 L1600 510 L1780 590 L1920 540 V640Z" fill="#3E3560"/>
+  <rect y="640" width="1920" height="440" fill="url(#water)"/>
+  <g opacity=".45" transform="translate(0 1280) scale(1 -1)">
+   <path d="M0 640 L140 520 L300 580 L470 470 L640 590 L820 500 L1000 600 L1200 520 L1420 610 L1600 510 L1780 590 L1920 540 V640Z" fill="#2A2650"/>
+  </g>
+  <ellipse cx="1240" cy="700" rx="70" ry="10" fill="#FFF1CF" opacity=".8"/>
+  <ellipse cx="1240" cy="740" rx="140" ry="6" fill="#FFE2A8" opacity=".55"/>
+  <ellipse cx="1240" cy="790" rx="220" ry="5" fill="#FFD58A" opacity=".35"/>
+  <ellipse cx="1240" cy="850" rx="300" ry="4" fill="#FFD58A" opacity=".2"/>
+  <path d="M300 760 h420 M900 820 h260 M1500 900 h300 M200 960 h200" stroke="#F5D2A0" stroke-width="3" opacity=".25" stroke-linecap="round"/>
+  </svg>`;
+} else {
+  // Portrait coastal scene (an iPhone held upright).
+  svg = `<svg viewBox="0 0 888 1920" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+   <linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7FC4E8"/><stop offset="1" stop-color="#DDF1F7"/></linearGradient>
+   <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1F8FB5"/><stop offset="1" stop-color="#2FC3C0"/></linearGradient>
+   <linearGradient id="sand" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3DDB0"/><stop offset="1" stop-color="#E7C38A"/></linearGradient>
+  </defs>
+  <rect width="888" height="900" fill="url(#sky2)"/>
+  <circle cx="660" cy="300" r="70" fill="#FFF6D8"/>
+  <path d="M60 330 q40 -30 80 0 q30 -22 60 0 Z M420 220 q50 -36 100 0 q36 -26 72 0 Z" fill="#FFFFFF" opacity=".85"/>
+  <path d="M0 900 L0 760 Q120 700 230 760 L330 700 Q420 650 470 720 L470 900Z" fill="#5E8C6A"/>
+  <rect y="880" width="888" height="560" fill="url(#sea)"/>
+  <path d="M0 980 q60 -14 120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0" stroke="#BFF3F0" stroke-width="5" fill="none" opacity=".6"/>
+  <path d="M0 1120 q60 -14 120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0" stroke="#BFF3F0" stroke-width="5" fill="none" opacity=".45"/>
+  <path d="M0 1380 Q200 1300 420 1360 T888 1330 V1920 H0Z" fill="url(#sand)"/>
+  <path d="M0 1380 Q200 1300 420 1360 T888 1330" stroke="#FFFFFF" stroke-width="10" fill="none" opacity=".8"/>
+  <g transform="translate(610 1500)">
+   <path d="M0 0 L-6 -330" stroke="#7A5A3A" stroke-width="16" stroke-linecap="round"/>
+   <path d="M-6 -330 q-110 -10 -170 60 M-6 -330 q-60 -80 -170 -70 M-6 -330 q60 -90 170 -70 M-6 -330 q110 -10 160 70 M-6 -330 q10 -90 -30 -140" stroke="#2F7D4E" stroke-width="20" fill="none" stroke-linecap="round"/>
+  </g>
+  <rect x="150" y="1560" width="220" height="16" rx="8" fill="#D9A05B" opacity=".6"/>
+  </svg>`;
+}
+document.body.innerHTML = svg;
+</script></body></html>

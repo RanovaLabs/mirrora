@@ -1,0 +1,33 @@
+<!doctype html><html><head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;500&display=block" rel="stylesheet">
+<style>
+  html,body{margin:0;width:100vw;height:100vh;overflow:hidden}
+  body{background:linear-gradient(135deg,#232B52 0%,#0D1022 100%);display:flex;align-items:center;justify-content:center;font-family:Inter,sans-serif;color:#F5F1E8}
+  .mark{display:block}
+  .row{display:flex;align-items:center;gap:6vh}
+  .word{font-family:Fraunces,serif;font-weight:600;letter-spacing:-0.01em;line-height:1}
+  .tag{color:rgba(245,241,232,.72);margin-top:2.2vh;font-weight:400}
+  .glow{position:absolute;inset:0;background:radial-gradient(60% 80% at 22% 50%,rgba(224,168,74,.16),transparent 70%)}
+</style></head><body>
+<div class="glow" id="glow"></div>
+<div id="root"></div>
+<script>
+const MARK = (size) => `<svg class="mark" width="${size}" height="${size*54/58}" viewBox="25 27.5 58 54" xmlns="http://www.w3.org/2000/svg">
+ <rect x="25" y="30" width="58" height="40" rx="7" fill="none" stroke="#F5F1E8" stroke-width="4.5"/>
+ <path d="M46 79 H62" stroke="#F5F1E8" stroke-width="4.5" stroke-linecap="round"/>
+ <path d="M36 61 L44.5 41 L54 54 L63.5 41 L72 61" fill="none" stroke="#E0A84A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const p = new URLSearchParams(location.search), kind = p.get('k');
+const W = innerWidth, H = innerHeight, root = document.getElementById('root');
+if (kind === 'icon') {            // square icon, mark fills ~62%
+  document.getElementById('glow').remove();
+  root.innerHTML = MARK(W*0.62);
+} else if (kind === 'banner') {   // TV banner: mark + wordmark
+  root.innerHTML = `<div class="row">${MARK(H*0.42)}<div class="word" style="font-size:${H*0.30}px">Mirrora</div></div>`;
+} else if (kind === 'feature') {  // Play feature graphic
+  root.innerHTML = `<div class="row" style="gap:${H*0.07}px">${MARK(H*0.40)}<div>
+    <div class="word" style="font-size:${H*0.21}px">Mirrora</div>
+    <div class="tag" style="font-size:${H*0.062}px">Mirror your iPhone, iPad or Mac to your Android TV</div></div></div>`;
+}
+document.fonts.ready.then(()=>document.title='ready');
+</script></body></html>

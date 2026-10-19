@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/black">
 
-    <dev.airplaytv.AspectFrameLayout
+    <com.ranovalabs.mirror.AspectFrameLayout
         android:id="@+id/mirror_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,7 +15,7 @@
             android:id="@+id/mirror_surface"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-    </dev.airplaytv.AspectFrameLayout>
+    </com.ranovalabs.mirror.AspectFrameLayout>
 
     <!-- TextureView so it layers cleanly above the mirroring SurfaceView. -->
     <androidx.media3.ui.PlayerView
@@ -40,7 +40,7 @@
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:contentDescription="@null"
-            android:src="@drawable/ic_airplay" />
+            android:src="@drawable/ic_mirrora_mark" />
 
         <TextView
             android:id="@+id/name_text"
@@ -91,6 +91,15 @@
             android:layout_marginTop="12dp"
             android:text="@string/overlay_button"
             android:visibility="gone" />
+
+        <Button
+            android:id="@+id/about_button"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/about_button"
+            android:textColor="#99FFFFFF" />
     </LinearLayout>
 
     <TextView

@@ -1,61 +1,64 @@
-# AirPlay TV
+# Mirrora
 
-An Android TV app that turns the TV into an AirPlay receiver for iPhone, iPad and Mac.
+Screen mirroring from iPhone, iPad and Mac to Android TV and Google TV.
 
-## What works
-- **Screen mirroring:** hardware H.264 decoding. It follows rotation and letterboxes portrait phones.
-- **Mirroring audio:** AAC-ELD.
-- **Music-only AirPlay:** ALAC audio (e.g. from the Music app) is decoded by a built-in
-  pure-Java decoder (`AlacDecoder`), since Android has none. It's tested bit-exact against Apple's
-  encoder: 16-bit stereo and mono, plus 24-bit.
-- **Always discoverable:** the receiver runs as a background service and starts when the TV boots.
-  Music plays in the background; mirroring and video open the player automatically and close it
-  when the session ends, returning to whatever was on screen.
-- **Photos, videos and other apps:** shown through the mirror stream. The receiver advertises
-  mirroring only (UxPlay's feature set), so iOS doesn't hand videos off to a separate stream.
-  The HLS / URL video path inherited from java-airplay is still in the code but iOS won't use it.
+Mirrora runs on the TV as a receiver for the Screen Mirroring button in Control Center. It shows
+your screen, photos and videos, and plays sound, including music sent straight to the TV.
 
-## Install on the TV
-1. On the TV, turn on Developer options and USB/network debugging.
-2. `adb connect <tv-ip>:5555`
-3. `adb install app/build/outputs/apk/release/app-release.apk`
-4. Open **AirPlay TV** once from the TV's app list. This switches the receiver on; from then on
-   it runs in the background and after every reboot.
-5. Press **Allow** on that screen to enable "Display over other apps". This lets mirroring and
-   video pop up on their own. Some TVs hide this setting; if so, run
-   `adb shell appops set dev.airplaytv SYSTEM_ALERT_WINDOW allow`.
-   Without it, music still works, but you have to open the app to see mirroring or video.
-6. On the Apple device, open Control Center → Screen Mirroring and pick the TV.
+- **Google Play:** https://play.google.com/store/apps/details?id=com.ranovalabs.mirror
+- **Website, support and privacy:** https://ranovalabs.github.io/mirrora/
 
-The TV and the Apple device must be on the same network (and subnet).
+## Features
+- **Screen mirroring:** hardware H.264 decoding. It follows rotation and letterboxes portrait
+  screens. Frames since the last keyframe are kept, so the picture recovers instantly when the
+  player reopens.
+- **Sound:** AAC-ELD mirroring audio via MediaCodec. ALAC music is decoded by a built-in pure-Java
+  decoder (`AlacDecoder`), since Android has none; it's tested bit-exact against Apple's encoder.
+- **Always discoverable:** a foreground service starts at boot. It advertises over the system
+  mDNS responder (NsdManager) and falls back to jmDNS on TVs whose responder never answers.
+  Mirroring opens the full-screen player automatically when "Display over other apps" is
+  allowed, and closes it when the session ends.
+- **Mirroring only:** the receiver advertises UxPlay's feature mask (`0x5A7FFEE6`), so Photos,
+  videos and YouTube all go through the mirror stream. The HLS/URL video path inherited from
+  java-airplay is still in the code, but iOS won't use it.
 
 ## Build
-Requires JDK 17 and the Android SDK (API 34).
+Requires JDK 17 and the Android SDK (platform 36).
 
-    JAVA_HOME=/opt/homebrew/opt/openjdk@17 ./gradlew assembleRelease
+    JAVA_HOME=/opt/homebrew/opt/openjdk@17 ./gradlew assembleDebug        # debug APK
+    JAVA_HOME=/opt/homebrew/opt/openjdk@17 ./gradlew bundleRelease        # Play bundle
+    JAVA_HOME=/opt/homebrew/opt/openjdk@17 ./gradlew testDebugUnitTest    # tests
 
-## Tests
+Release builds are signed with the upload key in `~/.mirrora-signing/keystore.properties` (or
+the file named by the `mirroraSigningProperties` Gradle property). Without it they're unsigned.
 
-    JAVA_HOME=/opt/homebrew/opt/openjdk@17 ./gradlew testDebugUnitTest
+The ALAC test fixtures in `app/src/test/resources/alac` were made with `afconvert -f caff -d alac`.
 
-The ALAC fixtures in `app/src/test/resources/alac` were made with `afconvert -f caff -d alac`.
+## Layout
+- `app/src/main/java/com/ranovalabs/mirror`: the Android app. It contains the service, player
+  screen, video and audio renderers, and the ALAC decoder.
+- `app/src/main/java/com/github/serezhka/airplay`: the AirPlay protocol, vendored from
+  [serezhka/java-airplay](https://github.com/serezhka/java-airplay) with Android changes marked
+  "Android port".
+- `docs/`: the website (GitHub Pages).
+- `store/`: Play Store listing text and graphics, with their HTML sources.
 
 ## Limitations
-- **Standby:** in deep standby many TVs suspend all apps, and the receiver can't be woken over
-  the network the way an Apple TV can. This depends on the TV's power settings (look for
-  "Quick start", "Network standby" or similar).
-- **Battery savers:** aggressive TV "memory optimizers" may still kill background apps. The
-  service asks to be restarted, but some firmware ignores that.
-- **Protocol:** this is a reverse-engineered AirPlay implementation (legacy pairing, no password
-  or PIN). It isn't Apple-certified and may break with future iOS releases.
-- **Release signing:** release builds are signed with the debug key so they sideload easily.
-  Use a real keystore before distributing.
+- **Standby:** many TVs pause all apps in standby, so the TV can't be woken over the network
+  the way an Apple TV can.
+- **Copy protection:** Netflix, Apple TV+ and other services block their video from being
+  mirrored to anything but an Apple TV.
+- **Unofficial protocol:** the AirPlay support is reverse-engineered (legacy pairing, no PIN).
+  It isn't Apple-certified and could break with a future iOS release.
 
-## Credits
-The AirPlay protocol code (`com.github.serezhka.airplay.*`) is vendored from
-[serezhka/java-airplay](https://github.com/serezhka/java-airplay) (MIT, see
-`THIRD_PARTY_LICENSE-java-airplay.txt`), with Android changes marked "Android port":
-- mDNS via NsdManager
-- NIO transport
-- API-level fixes
-- startup race fix
+## Licence
+Mirrora is free software under the [GNU General Public License v3](LICENSE).
+Copyright © 2026 Ranova Labs Ltd.
+
+It includes code from java-airplay (MIT), whose FairPlay handshake derives from playfair (GPLv3),
+and from curve25519-java (GPLv3). The full list of third-party notices is in
+[`app/src/main/assets/open_source_licenses.txt`](app/src/main/assets/open_source_licenses.txt),
+which the app shows under **About**.
+
+AirPlay, iPhone, iPad and Mac are trademarks of Apple Inc. Mirrora is not affiliated with or
+endorsed by Apple Inc.

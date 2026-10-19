@@ -326,14 +326,14 @@ public class MdnsAdvertiser {
             main.post(() -> {
                 if (multicastLock == null) {
                     WifiManager wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-                    multicastLock = wifi.createMulticastLock("AirPlayTV:mdns");
+                    multicastLock = wifi.createMulticastLock("Mirrora:mdns");
                     multicastLock.setReferenceCounted(false);
                 }
                 if (!stopped) {
                     multicastLock.acquire(); // Wi-Fi drops multicast queries without it
                 }
             });
-            String host = "AirPlayTV-" + deviceId.replace(":", "");
+            String host = "Mirrora-" + deviceId.replace(":", "");
             jmdns = JmDNS.create(address, host);
             log.info("jmDNS responder started on {} as {}.local", address.getHostAddress(), host);
         }
