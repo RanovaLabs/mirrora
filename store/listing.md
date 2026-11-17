@@ -4,39 +4,50 @@
 Mirrora: Screen Mirror for TV
 
 ## Short description (max 80)
-Mirror your iPhone, iPad or Mac to your Android TV. Free, no ads, no account.
+<!-- Keep price/promo words out: Play won't promote apps whose short description uses them. -->
+Put your iPhone, iPad or Mac screen on your TV. Open source, no sign-up needed.
 
 ## Full description (max 4000)
-Put your iPhone, iPad or Mac on the big screen. Mirrora turns your Android TV or Google TV into a screen-mirroring receiver that works with AirPlay screen mirroring, the Screen Mirroring button already in Control Center on your Apple devices.
+No subscription. No paid features. Everything is free, and it always will be.
 
-Open Control Center, tap Screen Mirroring, pick your TV. That's it. There's nothing to install on your iPhone, no account and no cables.
+Not free-for-now. Not free-until-the-trial-ends. Free like the remote's on-button, and staying that way.
 
-WHAT YOU CAN DO
-• Mirror your whole screen: photos, videos, apps, presentations and games
-• Show holiday photos and videos to the whole room
-• Play music from your iPhone through the TV speakers
-• Turn your iPhone or iPad sideways for a full-screen picture; portrait screens are shown centred
+Mirrora turns your Android TV or Google TV into a screen-mirroring receiver that works with AirPlay screen mirroring, the Screen Mirroring button already waiting in Control Center on your iPhone, iPad and Mac.
 
-BUILT FOR YOUR TV
-• Smooth playback with your TV's hardware video decoder
-• Always ready: Mirrora starts with your TV and stays discoverable in the background
-• Opens full screen by itself when you start mirroring, and steps aside when you stop
-• Designed for the remote; works on Android TV and Google TV
+Open Control Center. Tap Screen Mirroring. Pick your TV. That's the whole tutorial.
 
-PRIVATE BY DESIGN
-• Everything stays on your home network
-• No accounts, no ads, no analytics, no tracking
-• Nothing you mirror is recorded or sent anywhere
+THE BILL, ITEMISED
+• Price: 0, in every currency
+• Subscription: none
+• Free trial ends: never
+• "Pro" upgrade: doesn't exist
+• Ads: none, not even small ones
+• Watermarks and time limits: absent
+• Account, sign-up, email address: not needed
+• Total: still 0
 
-FREE AND OPEN SOURCE
-Mirrora is free software under the GNU GPL v3. The source is at github.com/RanovaLabs/mirrora.
+WHAT YOU GET FOR THAT
+• Your whole screen on the TV: photos, videos, apps, slides and games
+• Holiday photos for the whole sofa, not just whoever's holding the phone
+• Music from your iPhone through the TV speakers
+• Turn your phone sideways for full screen; portrait screens sit neatly in the middle
+• Smooth playback using your TV's own hardware video decoder
+• Always ready: starts with your TV and waits quietly in the background
+• Pops up when you start mirroring, steps aside when you stop
+• Private by design: nothing you mirror is recorded or leaves your home network
+
+WHY "FREE FOREVER" IS MORE THAN A PROMISE
+Promises can be broken. Licences are harder to argue with. Mirrora is open source under the GNU GPL v3, and every line of it is public at github.com/RanovaLabs/mirrora. Anyone can read it, build it and share it, and because it's built on other GPL software, it can never be turned into a closed, paid app. Free isn't a launch offer here. It's poured into the foundations.
 
 GOOD TO KNOW
-• Your Apple device and TV must be on the same Wi-Fi network.
+• Your Apple device and TV need to be on the same Wi-Fi network.
 • Choose "Allow" when Mirrora asks to display over other apps, so mirroring can appear on its own.
-• Netflix, Apple TV+ and some other services block their video from being mirrored. That is their copy protection, and Mirrora can't change it.
+• Netflix, Apple TV+ and some other services block their video from being mirrored. That's their copy protection, and no mirroring app can change it.
 
-Help: ranovalabs.github.io/mirrora/support.html
+FOUND A BUG? TELL US
+Mirrora is made by a small studio, and every report gets read. If something doesn't work on your TV, email ranovalabs@icloud.com or open an issue at github.com/RanovaLabs/mirrora/issues. Tell us your TV model and what the Mirrora screen says, and we'll get it fixed.
+
+Help and setup tips: ranovalabs.github.io/mirrora/support.html
 
 AirPlay, iPhone, iPad and Mac are trademarks of Apple Inc., registered in the U.S. and other countries. Mirrora is an independent app by Ranova Labs and is not affiliated with, sponsored or endorsed by Apple Inc.
 
